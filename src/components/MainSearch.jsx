@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 const MainSearch = () => {
   const [query, setQuery] = useState("");
   const [jobs, setJobs] = useState([]);
+
   const dispatch = useDispatch()
 
   const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search=";
@@ -61,6 +62,7 @@ const MainSearch = () => {
               className="flex justify-content-end align-content-center"
             >
               <Button
+                variant="outline-success"
                 onClick={() => {
                   dispatch({
                     type: "ADD_TO_FAVS",

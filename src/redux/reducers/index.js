@@ -1,14 +1,3 @@
-// il reducer è il "cervellone", "robottone" della nostra app Redux
-// si occupa di intercettare le actions che vengono "dispatchate" e
-// interpretarne il type; a seconda del type, il reducer creerà
-// il nuovo stato dell'app di conseguenza
-// i reducer di un'app Redux sono delle FUNZIONI PURE:
-// a) una funzione pure restituisce sempre lo stesso output se fornita
-// sempre dello stesso input
-// b) le funzioni pure NON mutano i loro parametri
-// c) una funzione pura NON esegue "side-effects" (ad es. non può
-// operare chiamate API)
-
 const initialState = {
   favourites: {
     content: [],

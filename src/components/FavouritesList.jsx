@@ -35,7 +35,7 @@ const FavouritesList = () => {
                   <FaHeartCircleMinus />
                 </Button>
               </Col>
-              <Col xs={9}>
+              <Col xs={10}>
                 <Job key={i} data={element} />
               </Col>
               <Col></Col>
