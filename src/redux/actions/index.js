@@ -16,3 +16,32 @@ export const removeFromFavouriteAction = (favElement) => {
     }
 }
 
+export const UPDATE_LIST = "UPDATE_LIST"
+
+export const updateListAction = () => {
+  return (dispatch, getState) => {
+
+    const currentState = getState()
+    console.log('currentState', currentState)
+
+    fetch("https://strive-benchmark.herokuapp.com/api/jobs?company=")
+      .then((r) => {
+        if (r.ok) {
+          return r.json()
+        } else {
+          throw new Error("Errore nel recupero risultati")
+        }
+      })
+      .then((results) => {
+        console.log("risultati", results)
+        dispatch({
+          type: UPDATE_LIST,
+          payload: results,
+        })
+      })
+      .catch((err) => {
+        console.log(typeof err)
+      })
+  }
+}
+

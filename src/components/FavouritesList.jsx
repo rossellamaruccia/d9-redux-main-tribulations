@@ -2,6 +2,8 @@ import { Row, Button, ListGroup, ListGroupItem } from "react-bootstrap"
 import { StarFill } from "react-bootstrap-icons"
 import { useSelector, useDispatch } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
+import { updateListAction } from "../redux/actions"
+import { useEffect } from "react"
 
 import { FaHome } from "react-icons/fa"
 
@@ -12,6 +14,11 @@ const FavouritesList = () => {
   const favourites = useSelector((currentState) => {
     return currentState.favourites.content
   })
+
+    useEffect(() => {
+      dispatch(updateListAction())
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
   return (
     <>

@@ -6,29 +6,26 @@ const initialState = {
   },
 }
 
-const mainReducer = function (currentState = initialState, action) {
+const favReducer = function (currentState = initialState, action) {
   switch (action.type) {
     case ADD_TO_FAVOURITE:
       return {
         ...currentState,
-        favourites: {
-          content: currentState.favourites.content.concat(action.payload),
-        },
+          content: [...currentState.content, action.payload],
       }
 
     case REMOVE_FROM_FAVOURITE:
       return {
         ...currentState,
-        favourites: {
-          ...currentState.cart,
-          content: currentState.favourites.content.filter((favElement) => {
+        content: [
+          currentState.content.filter((favElement) => {
             if (favElement === action.payload) {
               return false
             } else {
               return true
             }
           }),
-        },
+        ],
       }
 
     default:
@@ -36,4 +33,4 @@ const mainReducer = function (currentState = initialState, action) {
   }
 }
 
-export default mainReducer
+export default favReducer
