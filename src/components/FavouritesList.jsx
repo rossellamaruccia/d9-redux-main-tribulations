@@ -1,54 +1,46 @@
-import { Col, Row, Button } from "react-bootstrap"
-import { FaHeartCircleMinus } from "react-icons/fa6"
+import { Row, Button, ListGroup, ListGroupItem } from "react-bootstrap"
+import { StarFill } from "react-bootstrap-icons"
 import { useSelector, useDispatch } from "react-redux"
-import Job from "./Job"
+import { Link, useNavigate } from "react-router-dom"
+
 import { FaHome } from "react-icons/fa"
-import { useNavigate } from "react-router-dom"
 
 const FavouritesList = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-    const navigate = useNavigate()
+  const favourites = useSelector((currentState) => {
+    return currentState.favourites.content
+  })
 
-      const favourites = useSelector((currentState) => {
-        return currentState.favourites.content
-      })
-    console.log(favourites)
-    
-    const dispatch = useDispatch()
-    return (
-      <>
-        <Row className="justify-content-around">
-          {favourites.map((element, i) => (
-            <>
-              <Col></Col>
-              <Col xs={1} className="align-content-center">
-                <Button
-                          variant="danger"
-                          className="rounded-circle"
-                  onClick={() => {
-                    dispatch({
-                      type: "REMOVE_FROM_FAVS",
-                      payload: element._id,
-                    })
-                  }}
-                >
-                  <FaHeartCircleMinus />
-                </Button>
-              </Col>
-              <Col xs={10}>
-                <Job key={i} data={element} />
-              </Col>
-              <Col></Col>
-            </>
+  return (
+    <>
+      <Row className="justify-content-around">
+        <h1>Favourites</h1>
+        <ListGroup>
+          {favourites.map((fav, i) => (
+            <ListGroupItem key={i}>
+              <StarFill
+                className="mr-2"
+                onClick={() =>
+                  dispatch({
+                    type: "REMOVE_FROM_FAVOURITE",
+                    payload: fav,
+                  })
+                }
+              />
+              <Link to={"/" + fav}>{fav}</Link>
+            </ListGroupItem>
           ))}
-        </Row>
-        <Row className="mt-3 justify-content-center">
-          <Button onClick={() => navigate("/")} className="btn w-25 rounded-0">
-            <FaHome />
-          </Button>
-        </Row>
-      </>
-    )
+        </ListGroup>
+      </Row>
+      <Row className="mt-3 justify-content-center">
+        <Button onClick={() => navigate("/")} className="btn w-25 rounded-0">
+          <FaHome />
+        </Button>
+      </Row>
+    </>
+  )
 }
 
 export default FavouritesList

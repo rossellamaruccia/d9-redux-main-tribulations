@@ -5,24 +5,22 @@ const initialState = {
 }
 
 const mainReducer = function (currentState = initialState, action) {
-
   switch (action.type) {
-
-    case "ADD_TO_FAVS":
+    case "ADD_TO_FAVOURITE":
       return {
         ...currentState,
         favourites: {
-        content: currentState.favourites.content.concat(action.payload)
+          content: currentState.favourites.content.concat(action.payload),
         },
       }
 
-    case "REMOVE_FROM_FAVS":
+    case "REMOVE_FROM_FAVOURITE":
       return {
         ...currentState,
         favourites: {
           ...currentState.cart,
           content: currentState.favourites.content.filter((favElement) => {
-            if (favElement._id === action.payload) {
+            if (favElement === action.payload) {
               return false
             } else {
               return true
